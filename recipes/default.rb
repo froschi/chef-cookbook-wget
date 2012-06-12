@@ -1,7 +1,15 @@
+include_recipe "libssl"
+
 packages = Array.new
 
 case node[:lsb][:codename]
-when "lucid", "precise"
+when "lucid"
+  packages |= %w/
+    wget
+  /
+when "precise"
+  include_recipe "libidn"
+
   packages |= %w/
     wget
   /
